@@ -80,5 +80,15 @@ namespace holt::core
     };
 
     static_assert(std::is_trivially_copyable_v<Price>);
+    static_assert(std::is_trivially_copyable_v<Quantity>);
+    static_assert(std::is_trivially_copyable_v<OrderID>);
+    static_assert(std::is_trivially_copyable_v<SequenceNumber>);
+    static_assert(std::is_trivially_copyable_v<Timestamp>);
+    static_assert(std::is_trivially_copyable_v<ParticipantID>);
+    static_assert(std::is_trivially_copyable_v<MatchID>);
+    static_assert(std::is_trivially_copyable_v<Side>);
+    static_assert(std::is_trivially_copyable_v<OrderType>);
+    static_assert(std::is_trivially_copyable_v<OrderStatus>);
+    static_assert(std::is_trivially_copyable_v<Symbol>);
 
 }
