@@ -59,6 +59,20 @@ namespace holt::core
             return reinterpret_cast<T *>(node);
 
         }
+        void *deallocate(T *object) noexcept
+        {
+            if (object == nullptr) [[unlikely]] { return nullptr; }
 
+            std::destroy_at(object);
+            auto *node = reinterpret_cast<FreeNode *>(object);
+            node->next = free_list_head;
+            free_list_head = node;
+            --allocated_count;
+        }
+
+        [[nodiscard]] constexpr std::size_t capacity() const noexcept { return N; }
+        [[nodiscard]] bool empty() const noexcept {
+            return free_list_head == nullptr;
+        }
     };
 }
