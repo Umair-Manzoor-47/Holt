@@ -23,7 +23,7 @@ namespace holt::core
         };
 
     private:
-        std::unique_ptr<Slot[]> slots_;
+        std::unique_ptr<Slot[]> m_Slots;
         FreeNode* free_list_head{nullptr};
         std::size_t allocated_count{0};
 
@@ -32,7 +32,7 @@ namespace holt::core
             free_list_head = nullptr;
             for (std::size_t index = 0; index < N; ++index)
             {
-                auto *node = reinterpret_cast<FreeNode *>(slots_[index].storage.data());
+                auto *node = reinterpret_cast<FreeNode *>(m_Slots[index].storage.data());
                 node->next = free_list_head;
                 free_list_head = node;
             }
@@ -40,7 +40,7 @@ namespace holt::core
     public:
 
         MemoryPool() :
-            slots_(std::make_unique<Slot[]>(N))
+            m_Slots(std::make_unique<Slot[]>(N))
         { InitializeFreeList(); }
 
         MemoryPool(const MemoryPool&) = delete;
