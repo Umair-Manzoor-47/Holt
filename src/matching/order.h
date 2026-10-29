@@ -4,7 +4,7 @@
 #include <type_traits>
 #include "core/types.h"
 
-namespace holt::exchange {
+namespace holt::matching {
 
     struct Level;
 
